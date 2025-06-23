@@ -1,0 +1,99 @@
+name: EthioMart CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10"]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pytest pytest-cov black flake8 mypy
+
+    - name: Run linting (Black & Flake8)
+      run: |
+        black --check .
+        flake8 .
+
+    - name: Run type checking (mypy)
+      run: |
+        mypy --ignore-missing-imports .
+
+    - name: Run unit tests
+      run: |
+        pytest --cov=./ --cov-report=xml
+      env:
+        TEST_ENV: true
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      if: github.ref == 'refs/heads/main'
+
+  validate-ner-model:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+
+    - name: Install dependencies
+      run: |
+        pip install torch transformers datasets evaluate seqeval
+
+    - name: Validate NER model
+      run: |
+        python scripts/validate_model.py
+      env:
+        HF_TOKEN: ${{ secrets.HF_TOKEN }}
+
+  generate-scorecard:
+    needs: validate-ner-model
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+
+    - name: Install dependencies
+      run: |
+        pip install pandas matplotlib jinja2
+
+    - name: Generate sample scorecard
+      run: |
+        python scripts/generate_sample_scorecard.py
+      env:
+        SAMPLE_DATA: "data/sample_posts.csv"
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: vendor-scorecard
+        path: reports/vendor_scorecard.html
