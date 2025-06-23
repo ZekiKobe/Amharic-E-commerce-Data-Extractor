@@ -1,0 +1,7 @@
+,f1,precision,recall,accuracy,speed,error
+xlm-roberta-base,0.0,0.0,0.0,0.22591362126245848,1.707,
+bert-base-multilingual-cased,,,,,,index out of range in self
+Davlan/bert-base-multilingual-cased-ner-hrl,,,,,,"Error(s) in loading state_dict for Linear:
+	size mismatch for bias: copying a param with shape torch.Size([9]) from checkpoint, the shape in current model is torch.Size([7])."
+afro-xlmr-base,,,,,,"afro-xlmr-base is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `huggingface-cli login` or by passing `token=<your_token>`"
