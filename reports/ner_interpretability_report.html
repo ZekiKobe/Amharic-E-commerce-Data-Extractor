@@ -1,0 +1,113 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>NER Model Interpretability Report</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 2em; }
+                table { border-collapse: collapse; width: 100%; }
+                th, td { border: 1px solid #ddd; padding: 8px; }
+                th { background-color: #f2f2f2; }
+                .error { color: #d9534f; font-weight: bold; }
+                .correct { color: #5cb85c; }
+            </style>
+        </head>
+        <body>
+            <h1>NER Model Interpretability Report</h1>
+            <p>Generated on 2025-06-23 16:29:36</p>
+
+            <h2>Summary</h2>
+            <p>Analyzed 2 cases with the following results:</p>
+            <ul>
+                
+                <li>Missed all entities: 2 cases</li>
+                
+            </ul>
+
+            <h2>Detailed Cases</h2>
+            
+            <div style="margin-bottom: 3em; padding: 1em; border: 1px solid #eee;">
+                <h3 class="error">
+                    Case 1: Missed all entities
+                </h3>
+                <p><strong>Text:</strong> ልብስ በ 500 ብር ከ አዲስ አበባ</p>
+
+                <table>
+                    <tr>
+                        <th>True Entities</th>
+                        <th>Predicted Entities</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            
+                            <ul>
+                                
+                                <li>PRODUCT (0-5): "ልብስ በ"</li>
+                                
+                                <li>PRICE (6-13): "500 ብር "</li>
+                                
+                                <li>LOC (17-27): "ስ አበባ"</li>
+                                
+                            </ul>
+                            
+                        </td>
+                        <td>
+                            
+                            <p>No predicted entities</p>
+                            
+                        </td>
+                    </tr>
+                </table>
+
+                <h4>Analysis</h4>
+                <ul>
+                    
+                    <li>Model made 'Missed all entities' error</li>
+                    
+                    <li>LIME analysis available</li>
+                    
+                </ul>
+            </div>
+            
+            <div style="margin-bottom: 3em; padding: 1em; border: 1px solid #eee;">
+                <h3 class="error">
+                    Case 2: Missed all entities
+                </h3>
+                <p><strong>Text:</strong> በ 200 ብር አዲስ ልብስ</p>
+
+                <table>
+                    <tr>
+                        <th>True Entities</th>
+                        <th>Predicted Entities</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            
+                            <ul>
+                                
+                                <li>PRICE (2-10): "200 ብር አ"</li>
+                                
+                                <li>PRODUCT (11-16): "ስ ልብስ"</li>
+                                
+                            </ul>
+                            
+                        </td>
+                        <td>
+                            
+                            <p>No predicted entities</p>
+                            
+                        </td>
+                    </tr>
+                </table>
+
+                <h4>Analysis</h4>
+                <ul>
+                    
+                    <li>Model made 'Missed all entities' error</li>
+                    
+                </ul>
+            </div>
+            
+        </body>
+        </html>
+        
