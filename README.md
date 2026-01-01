@@ -1,19 +1,14 @@
-EthioMart Vendor Analytics & Micro-Lending Scorecard
-Project Repository
+# EthioMart Vendor Analytics & Micro-Lending Scorecard
+## Project Repository
+### Project Overview
+#### This project aims to:
+- Scrape and preprocess Ethiopian e-commerce Telegram messages.
+- Extract key business entities (products, prices, locations) using a fine-tuned NER model.
+- Analyze vendor performance based on engagement metrics (views, post frequency, pricing).
+- Generate a lending scorecard to help EthioMart identify high-potential vendors for micro-loans.
 
-Project Overview
-This project aims to:
-
-Scrape and preprocess Ethiopian e-commerce Telegram messages.
-
-Extract key business entities (products, prices, locations) using a fine-tuned NER model.
-
-Analyze vendor performance based on engagement metrics (views, post frequency, pricing).
-
-Generate a lending scorecard to help EthioMart identify high-potential vendors for micro-loans.
-
-Tasks Breakdown
-📌 Task 1: Data Ingestion & Preprocessing
+#### Tasks Breakdown
+##### 📌 Task 1: Data Ingestion & Preprocessing
 Objective: Fetch and preprocess Telegram messages for NER training.
 
 Steps:
@@ -37,7 +32,7 @@ raw_data/ (raw scraped messages)
 
 processed_data.csv (structured, cleaned data)
 
-📌 Task 2: Label Dataset in CoNLL Format
+##### Task 2: Label Dataset in CoNLL Format
 Objective: Manually annotate 30-50 messages for NER training.
 
 Steps:
@@ -53,7 +48,7 @@ B-LOC, I-LOC (e.g., Addis Ababa, Bole)
 
 ner_labels.conll (annotated dataset in CoNLL format)
 
-📌 Task 3: Fine-Tune NER Model
+##### Task 3: Fine-Tune NER Model
 Objective: Train a model to extract products, prices, and locations.
 
 Steps:
@@ -79,7 +74,7 @@ saved_model/ (fine-tuned NER model)
 
 eval_results.txt (performance metrics)
 
-📌 Task 4: Model Comparison & Selection
+##### Task 4: Model Comparison & Selection
 Objective: Compare models (XLM-Roberta, mBERT, DistilBERT) and pick the best.
 
 Steps:
@@ -91,7 +86,7 @@ Steps:
 
 model_comparison_report.md
 
-📌 Task 5: Model Interpretability
+##### Task 5: Model Interpretability
 Objective: Explain model predictions using SHAP/LIME.
 
 Steps:
@@ -103,7 +98,7 @@ Steps:
 
 shap_analysis.html (interactive explanations)
 
-📌 Task 6: FinTech Vendor Scorecard
+##### Task 6: FinTech Vendor Scorecard
 Objective: Rank vendors for micro-lending eligibility.
 
 Steps:
@@ -129,7 +124,7 @@ Key metrics comparison.
 
 vendor_scorecard.html
 
-How to Run the Project
+#### How to Run the Project
 1. Data Collection
 python
 python scraper.py --channels "channel1,channel2" --output raw_data.json
