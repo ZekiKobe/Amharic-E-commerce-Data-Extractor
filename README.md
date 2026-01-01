@@ -1,5 +1,4 @@
 # EthioMart Vendor Analytics & Micro-Lending Scorecard
-## Project Repository
 ### Project Overview
 #### This project aims to:
 - Scrape and preprocess Ethiopian e-commerce Telegram messages.
